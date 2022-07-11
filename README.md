@@ -1,34 +1,30 @@
-# Updates!
+# Description
+### A ecommerce site for electronics.
 
-This new version contains an integration with redux-toolkit instead of redux and it's witch Typescript :)
+# Tools used:
+### Nestjs, Redux, SASS
 
-# Next.js Ecommerce
+<br> <br>
 
-This repo contains a work in progress Ecommerce responsive made with Next.js, Redux, Redux-persist, Hooks, SCSS and BEM. If you like it please give it a star :)
-## Design
+## Installation
 
-[This](https://www.xdguru.com/free-xd-ecommerce-ui-kit-by-iceo/) is the design of the project.
+```bash
+$ npm install
+```
 
-## Available pages
+## Running the app
 
-- Home page: /
-- Products page: /products
-- Product single page: /product/1
-- Cart page: /cart
-- Login page: /login
-- Register page: /register
-- 404 page: /page-not-found
+```bash
+# at first add the mongodb database link in the .env file
 
-## Screenshots
+# development
+$ npm run dev
 
-![Next Ecommerce screenshot](https://lucaspulliese.com/wp-content/uploads/2020/09/ecommerce-1.jpg)
+# production mode
+$ npm run build
+$ npm run start
+```
 
-![Next Ecommerce screenshot](https://lucaspulliese.com/wp-content/uploads/2020/09/ecommerce-2.jpg)
 
-## Next TO-DO
 
-- [X] Checkout page
-- [ ] Add Facebook login
-- [ ] Add Google login
-- [ ] Add Proptypes on components
-- [ ] Use CSS variables instead of static colors
+

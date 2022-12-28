@@ -1,13 +1,20 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 // fake data
-import products from '../../../utils/data/products';
+import { PrismaClient, Prisma } from '@prisma/client'
 
-export default (req: NextApiRequest, res: NextApiResponse) => {
+
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  const prisma = new PrismaClient()
+
   const {
     query: { pid },
   } = req
 
-  const product = products.find(x => x.id === pid);
+  const product = await prisma.product.findUnique({
+    where:{
+      id: pid
+    }
+  })
   res.status(200).json(product);
 }

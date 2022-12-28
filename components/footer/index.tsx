@@ -3,7 +3,7 @@ import Logo from '../../assets/icons/logo';
 const Footer = () => {
   return (
     <footer className="site-footer">
-      <div className="container">
+      {/* <div className="container">
         <div className="site-footer__top">
           <div className="site-footer__description">
             <h6><Logo /> <span>E</span>-Shop</h6>
@@ -43,10 +43,10 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      
+       */}
       <div className="site-footer__bottom">
         <div className="container">
-          <p>DESIGN BY ICEO.CO - © 2019. ALL RIGHTS RESERVED.</p>
+          <p>Designed and Developer by Adi - © 2021. ALL RIGHTS RESERVED.</p>
         </div>
       </div>
     </footer>

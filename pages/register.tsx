@@ -16,9 +16,9 @@ const RegisterPage = () => (
           <p className="form-block__description">Lorem Ipsum is simply dummy text of the printing 
           and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
           
-          <form className="form">
+          <form className="form" method='POST' action='/api/register'>
             <div className="form__input-row">
-              <input className="form__input" placeholder="First Name" type="text" />
+              <input className="form__input" placeholder="First Name" name='name' type="text" />
             </div>
             
             <div className="form__input-row">
@@ -26,11 +26,11 @@ const RegisterPage = () => (
             </div>
             
             <div className="form__input-row">
-              <input className="form__input" placeholder="Email" type="text" />
+              <input className="form__input" placeholder="Email"name='email'  type="text" />
             </div>
             
             <div className="form__input-row">
-              <input className="form__input" type="Password" placeholder="Password" />
+              <input className="form__input" type="Password"  name='password' placeholder="Password" />
             </div>
 
             <div className="form__info">
@@ -43,7 +43,7 @@ const RegisterPage = () => (
               </div>
             </div>
 
-            <button type="button" className="btn btn--rounded btn--yellow btn-submit">Sign up</button>
+            < input type="submit" className="btn btn--rounded btn--yellow btn-submit" value={"Register"} />
 
             <p className="form__signup-link">
               <Link href="/login">

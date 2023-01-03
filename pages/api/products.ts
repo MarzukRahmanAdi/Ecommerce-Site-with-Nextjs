@@ -20,6 +20,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   //   },
   // }) 
   const Product = await prisma.product.findMany();
+  
   setTimeout(() => {
     res.status(200).json(Product);
   }, 800);

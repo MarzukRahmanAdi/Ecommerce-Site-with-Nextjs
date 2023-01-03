@@ -4,7 +4,8 @@ import useSwr from 'swr';
 const ProductsFeatured = () => {
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
   const { data } = useSwr('/api/products', fetcher);
-
+  console.log(data);
+  
   return (
     <section className="section section-products-featured">
       <div className="container">
@@ -12,7 +13,6 @@ const ProductsFeatured = () => {
           <h3>Selected just for you</h3>
           <a href="/products" className="btn btn--rounded btn--border">Show All</a>
         </header>
-
         <ProductsCarousel products={data} />
       </div>
     </section>

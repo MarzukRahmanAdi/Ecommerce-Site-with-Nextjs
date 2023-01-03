@@ -12,7 +12,7 @@ type LoginMail = {
   password: string;
 }
 
-const LoginPage = () => {
+const AdminLogin = () => {
   const { register, handleSubmit, errors } = useForm();
   const [registering, setRegistering] = useState(false)
   const router = useRouter()
@@ -37,10 +37,23 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
-    const user = localStorage.getItem("token")
-    if(user){
-      router.push("/")
-    }
+    (async() => {
+      const user = localStorage.getItem('token');
+      if(!user) return
+      const rawResponse = await fetch('/api/getuserdetails', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({token: user})
+      });
+      const content = await rawResponse.json();
+      console.log(content.message);
+      if(content.message.role === "admin"){
+        router.push("/dashboard")
+      }
+    })()
   }, [router.isReady])
   
 
@@ -66,6 +79,8 @@ const LoginPage = () => {
                   placeholder="email" 
                   type="text" 
                   name="email"
+                  value={"admin@admin.com"}
+
                   ref={register({
                     required: true,
                     pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
@@ -86,6 +101,7 @@ const LoginPage = () => {
                   className="form__input" 
                   type="password" 
                   placeholder="Password" 
+                  value={1234}
                   name="password"
                   ref={register({ required: true })}
                 />
@@ -111,8 +127,7 @@ const LoginPage = () => {
               </div>
 
               <div className="form__btns">
-                <button type="button" className="btn-social fb-btn"><i className="icon-facebook"></i>Facebook</button>
-                <button type="button" className="btn-social google-btn"><img src="/images/icons/gmail.svg" alt="gmail" /> Gmail</button>
+                <button type="button" className="btn-social google-btn"><img src="https://cdn-icons-png.flaticon.com/512/6830/6830335.png" width={30} alt="gmail" />Admin Login</button>
               </div>
 
               <button type="submit" disabled={registering} className="btn btn--rounded btn--yellow btn-submit">{registering ? "Loging you in" :"Login"}</button>
@@ -127,5 +142,5 @@ const LoginPage = () => {
   )
 }
   
-export default LoginPage
+export default AdminLogin
   

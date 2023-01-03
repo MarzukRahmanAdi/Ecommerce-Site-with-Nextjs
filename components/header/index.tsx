@@ -5,6 +5,7 @@ import Logo from '../../assets/icons/logo';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { RootState } from 'store';
+// import jwt_decode from "jwt-decode";
 
 type HeaderType = {
   isErrorPage?: Boolean;
@@ -20,6 +21,7 @@ const Header = ({ isErrorPage }: HeaderType) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const navRef = useRef(null);
   const searchRef = useRef(null);
+  const [userDetails, setuserDetails] = useState<any>()
 
   const headerClass = () => {
     if(window.pageYOffset === 0) {
@@ -47,6 +49,26 @@ const Header = ({ isErrorPage }: HeaderType) => {
   const closeSearch = () => {
     setSearchOpen(false);
   }
+  useEffect(() => {
+    (async() => {
+      const user = localStorage.getItem('token');
+      if(!user) return
+      const rawResponse = await fetch('/api/getuserdetails', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({token: user})
+      });
+      const content = await rawResponse.json();
+      console.log(content.message);
+      
+      setuserDetails(content.message)
+    })()
+    
+  }, [])
+  
 
   // on click outside
   useOnClickOutside(navRef, closeMenu);
@@ -84,7 +106,7 @@ const Header = ({ isErrorPage }: HeaderType) => {
             </button>
           </Link>
           <Link href="/login">
-            <button className="site-header__btn-avatar"><i className="icon-avatar"></i></button>
+            <button className="site-header__btn-avatar"><i className="icon-avatar"></i>{userDetails && userDetails?.name}</button>
           </Link>
           <button 
             onClick={() => setMenuOpen(true)} 

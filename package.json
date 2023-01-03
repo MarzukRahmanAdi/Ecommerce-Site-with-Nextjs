@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "export": "next build && next export"
+    "start": "NODE_ENV=production node server.js",
+    "export": "next build"
   },
   "keywords": [
     "react",
@@ -19,6 +19,8 @@
     "@prisma/client": "4.8.0",
     "@reduxjs/toolkit": "^1.8.1",
     "bcrypt": "^5.1.0",
+    "jsonwebtoken": "^9.0.0",
+    "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
     "next": "^12.1.0",
     "next-redux-wrapper": "^6.0.2",
